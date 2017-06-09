@@ -1,0 +1,133 @@
+﻿<Window x:Class="SnakeClient.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:SnakeClient"
+        mc:Ignorable="d"
+        Title="MainWindow" Height="530" Width="470" FontFamily="微软雅黑">
+    <Window.Resources>
+        <DataTemplate x:Key="userTemplate">
+            <Grid Margin="5" Height="34">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition/>
+                    <ColumnDefinition Width="Auto"/>
+                </Grid.ColumnDefinitions>
+                <TextBlock Text="玩家4" Foreground="White" FontSize="26"/>
+                <TextBlock Text="未连接" Foreground="White" FontSize="20" Grid.Column="1" VerticalAlignment="Center"/>
+            </Grid>
+        </DataTemplate>
+    </Window.Resources>
+    <Grid>
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition/>
+                <RowDefinition Height="Auto"/>
+            </Grid.RowDefinitions>
+            <ScrollViewer Name="sv_topBar" Height="60" VerticalScrollBarVisibility="Hidden">
+                <StackPanel Name="sp_topBarContainer" Height="120" RenderTransformOrigin="0.5, 0">
+                    <StackPanel.RenderTransform>
+                        <TranslateTransform X="0" Y="0"/>
+                    </StackPanel.RenderTransform>
+                    <Grid Name="grid_Connection" Height="{Binding ElementName=sv_topBar, Path=Height}">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition/>
+                            <ColumnDefinition Width="Auto"/>
+                            <ColumnDefinition Width="Auto"/>
+                            <ColumnDefinition Width="Auto"/>
+                        </Grid.ColumnDefinitions>
+                        <Grid>
+                            <Grid.RowDefinitions>
+                                <RowDefinition/>
+                                <RowDefinition/>
+                            </Grid.RowDefinitions>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition/>
+                                <ColumnDefinition Width="Auto"/>
+                            </Grid.ColumnDefinitions>
+                            <TextBox Name="tb_ipaddr" Text="godliao.imwork.net" />
+                            <TextBox Name="tb_port" Text="27758" Grid.Column="1" Width="60"/>
+                            <StackPanel Orientation="Horizontal" Grid.Row="1" Grid.ColumnSpan="2">
+                                <RadioButton Name="rb_colorfulMode" Content="多彩模式" Margin="5, 5"/>
+                                <RadioButton Content="走开我是色盲好吗" Margin="15, 5" IsChecked="True"/>
+                            </StackPanel>
+                        </Grid>
+                        <Button Name="btn_preset" Content="切换预设" Grid.Column="1" Margin="5" Padding="10, 0"/>
+                        <Button Name="btn_connect" Content="连接" Grid.Column="2" Margin="5" Padding="10, 0"/>
+                        <Button Name="btn_prepare" Content="准备" Grid.Column="3" Margin="5" Padding="10, 0" IsEnabled="False"/>
+                    </Grid>
+                    <Grid Name="grid_gameInfo" Height="{Binding ElementName=sv_topBar, Path=Height}">
+                    </Grid>
+                </StackPanel>
+            </ScrollViewer>
+            <Grid Grid.Row="1" Name="grid_map" Background="Transparent">
+
+            </Grid>
+            <Grid Grid.Row="2" Name="grid_inventory" Height="25">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition/>
+                    <ColumnDefinition/>
+                    <ColumnDefinition/>
+                    <ColumnDefinition/>
+                    <ColumnDefinition/>
+                </Grid.ColumnDefinitions>
+                <Grid>
+                    <TextBlock Text="无道具" TextAlignment="Center" Margin="5"/>
+                </Grid>
+                <Grid Grid.Column="1">
+                    <TextBlock Text="无道具" TextAlignment="Center" Margin="5"/>
+                </Grid>
+                <Grid Grid.Column="2">
+                    <TextBlock Text="无道具" TextAlignment="Center" Margin="5"/>
+                </Grid>
+                <Grid Grid.Column="3">
+                    <TextBlock Text="无道具" TextAlignment="Center" Margin="5"/>
+                </Grid>
+                <Grid Grid.Column="4">
+                    <TextBlock Text="无道具" TextAlignment="Center" Margin="5"/>
+                </Grid>
+            </Grid>
+           
+            <Grid Grid.Row="1" Name="grid_Blind" Background="White" Visibility="Collapsed">
+
+            </Grid>
+            <Grid Grid.Row="1" Name="grid_dieMask" Background="#50AA1111" Visibility="Collapsed" Grid.RowSpan="2">
+                <TextBlock Text="哈哈哈哈哈哈哈哈哈哈哈哈 辣鸡" 
+                       VerticalAlignment="Center"
+                       HorizontalAlignment="Center"
+                       Foreground="White"
+                       FontSize="20"/>
+            </Grid>
+            <Grid Grid.Row="1" Name="grid_youWin" Background="#50004411" Visibility="Collapsed" Grid.RowSpan="2">
+                <TextBlock Text="流弊你赢啦" 
+                       VerticalAlignment="Center"
+                       HorizontalAlignment="Center"
+                       Foreground="White"
+                       FontSize="20"/>
+            </Grid>
+            <Grid Grid.Row="1" Name="grid_elseWin" Background="#50440044" Visibility="Collapsed" Grid.RowSpan="2">
+                <TextBlock Text="" 
+                       VerticalAlignment="Center"
+                       HorizontalAlignment="Center"
+                       Foreground="White"
+                       FontSize="20"/>
+            </Grid>
+            <Grid Grid.Row="1" Name="grid_playerstatus" Background="#FFAAAAAA" Grid.RowSpan="2">
+                <ScrollViewer Name="sv_playersLayer" HorizontalAlignment="Center" Width="400" Opacity="0">
+                    <StackPanel >
+
+                    </StackPanel>
+                </ScrollViewer>
+            </Grid>
+        </Grid>
+        <Grid Name="grid_notification" Background="DarkCyan" VerticalAlignment="Top" Height="{Binding ElementName=sv_topBar, Path=Height}" RenderTransformOrigin="0.5, 0">
+            <Grid.RenderTransform>
+                <TranslateTransform Y="-60"/>
+            </Grid.RenderTransform>
+            <ListView Name="lv_notifications" Background="Transparent" Foreground="White" Margin="5, 0, 0, 0">
+                
+            </ListView>
+        </Grid>
+    </Grid>
+</Window>

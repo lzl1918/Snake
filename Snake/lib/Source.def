@@ -1,0 +1,4 @@
+LIBRARY "lib"
+EXPORTS
+init
+move
